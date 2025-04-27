@@ -15,9 +15,9 @@ namespace MS.Catalog.Api.Repositories
             });
             service.AddScoped(sp =>
             {
-                var mongoClient = sp.GetRequiredService<MongoClient>();
+                var mongoClient = sp.GetRequiredService<IMongoClient>();
                 var options = sp.GetRequiredService<MongoOptions>();
-                return AppDbContext.Create(mongoClient.GetDatabase(options.ConnectionString));
+                return AppDbContext.Create(mongoClient.GetDatabase(options.DatabaseName));
             });
 
             return service;

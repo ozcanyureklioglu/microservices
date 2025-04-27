@@ -14,7 +14,7 @@ namespace MS.Shared
         {
             return result.Status switch
             {
-                HttpStatusCode.OK => Results.Ok(result),
+                HttpStatusCode.OK => Results.Ok(result.Data),
                 HttpStatusCode.Created => Results.Created(result.UrlAsCreated, result),
                 HttpStatusCode.NotFound => Results.NotFound(result.Fail),
                 _ => Results.Problem(result.Fail)

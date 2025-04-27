@@ -4,6 +4,7 @@ using MongoDB.Driver;
 using MS.Catalog.Api;
 using MS.Catalog.Api.Features.Categories;
 using MS.Catalog.Api.Features.Categories.create;
+using MS.Catalog.Api.Features.Courses;
 using MS.Catalog.Api.Options;
 using MS.Catalog.Api.Repositories;
 using MS.Shared;
@@ -19,6 +20,7 @@ builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
 var app = builder.Build();
 
 app.AddCategoryGroupEndpointExt();
+app.AddCourseGroupEndpointExt();
 
 
 if (app.Environment.IsDevelopment())

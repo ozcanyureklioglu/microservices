@@ -10,10 +10,10 @@ namespace MS.Catalog.Api.Repositories
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
-            builder.ToCollection("courses");
+            builder.ToCollection("categories");
             builder.HasKey(x => x.Id);
-            builder.Ignore(x => x.Courses);
             builder.Property(x => x.Id).ValueGeneratedNever();
+            builder.Ignore(x => x.Courses);
         }
     }
 }
