@@ -11,6 +11,7 @@ namespace MS.Catalog.Api.Features.Courses.Update
             group.MapPut("/",
                     async (UpdateCourseCommand command, IMediator mediator) =>
                         (await mediator.Send(command)).ToResult())
+                .MapToApiVersion(1, 0)
                 .WithName("UpdateCourse")
                 .AddEndpointFilter<ValidationFilter<UpdateCourseCommand>>();
 

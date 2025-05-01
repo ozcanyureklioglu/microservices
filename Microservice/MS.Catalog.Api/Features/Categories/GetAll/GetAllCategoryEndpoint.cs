@@ -30,7 +30,9 @@ namespace MS.Catalog.Api.Features.Categories.GetAll
         {
             group.MapGet("/",
                     async (IMediator mediator) =>
-                    (await mediator.Send(new GetAllCategoryQuery())).ToResult());
+                    (await mediator.Send(new GetAllCategoryQuery())).ToResult())
+                .MapToApiVersion(1, 0)
+                .WithName("GetAllCategory");
 
             return group;
         }

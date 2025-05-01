@@ -36,6 +36,7 @@ namespace MS.Catalog.Api.Features.Categories.GetById
             group.MapGet("/{id:guid}",
                     async (IMediator mediator, Guid id) =>
                         (await mediator.Send(new GetCategoryByIdQuery(id))).ToResult())
+                .MapToApiVersion(1, 0)
                 .WithName("GetByIdCategory");
 
 

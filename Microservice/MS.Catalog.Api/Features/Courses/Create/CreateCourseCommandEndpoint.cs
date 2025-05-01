@@ -12,6 +12,7 @@ namespace MS.Catalog.Api.Features.Courses.Create
             group.MapPost("/",
                     async (CreateCourseCommand command, IMediator mediator) =>
                     (await mediator.Send(command)).ToResult())
+                .MapToApiVersion(1, 0)
                 .WithName("CreateCourse")
                 .Produces<Guid>(StatusCodes.Status201Created)
                 .Produces(StatusCodes.Status404NotFound)

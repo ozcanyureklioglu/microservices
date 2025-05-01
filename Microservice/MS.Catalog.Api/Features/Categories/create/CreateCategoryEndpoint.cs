@@ -12,6 +12,7 @@ namespace MS.Catalog.Api.Features.Categories.create
                     async (CreateCategoryCommand command, IMediator mediator) =>
                     (await mediator.Send(command)).ToResult())
                 .WithName("CreateCategory")
+                .MapToApiVersion(1, 0)
                 .AddEndpointFilter<ValidationFilter<CreateCategoryCommand>>();
 
             return group;

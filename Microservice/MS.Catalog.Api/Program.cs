@@ -16,11 +16,12 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbOptions();
 builder.Services.AddDbExt();
 builder.Services.AddCommonServiceExt(typeof(CatalogAssembly));
+builder.Services.AddVersioningExt();
 
 var app = builder.Build();
-
-app.AddCategoryGroupEndpointExt();
-app.AddCourseGroupEndpointExt();
+app.AddSeedDataExt();
+app.AddCategoryGroupEndpointExt(app.AddVersionSetExt());
+app.AddCourseGroupEndpointExt(app.AddVersionSetExt());
 
 
 if (app.Environment.IsDevelopment())
