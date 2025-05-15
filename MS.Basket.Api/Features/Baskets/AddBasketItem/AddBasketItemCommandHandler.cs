@@ -3,15 +3,16 @@ using Microsoft.Extensions.Caching.Distributed;
 using MS.Basket.Api.Const;
 using MS.Basket.Api.Dtos;
 using MS.Shared;
+using MS.Shared.Services;
 using System.Text.Json;
 
 namespace MS.Basket.Api.Features.Baskets.AddBasketItem
 {
-    public class AddBasketItemCommandHandler(IDistributedCache cache) : IRequestHandler<AddBasketItemCommand, ServiceResult>
+    public class AddBasketItemCommandHandler(IDistributedCache cache, IIdentityService identityService) : IRequestHandler<AddBasketItemCommand, ServiceResult>
     {
         public async Task<ServiceResult> Handle(AddBasketItemCommand request, CancellationToken cancellationToken)
         {
-            var userId = Guid.NewGuid();
+            var userId = identityService.GetUserId;
 
             var cacheKey = string.Format(BasketConst.BasketCacheKey, userId);
 
