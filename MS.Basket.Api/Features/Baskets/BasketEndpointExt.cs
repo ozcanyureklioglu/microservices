@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning.Builder;
 using MS.Basket.Api.Features.Baskets.AddBasketItem;
 using MS.Basket.Api.Features.Baskets.DeleteBasket;
+using MS.Basket.Api.Features.Baskets.GetBasket;
 
 namespace MS.Basket.Api.Features.Baskets
 {
@@ -11,7 +12,8 @@ namespace MS.Basket.Api.Features.Baskets
             app.MapGroup("api/v{version:apiVersion}/baskets").WithTags("Baskets")
                 .WithApiVersionSet(apiVersionSet)
                 .AddBasketItemGroupItemEndpoint()
-                .DeleteBasketItemGroupItemEndpoint();
+                .DeleteBasketItemGroupItemEndpoint()
+                .GetBasketItemGroupItemEndpoint();
         }
     }
 }
