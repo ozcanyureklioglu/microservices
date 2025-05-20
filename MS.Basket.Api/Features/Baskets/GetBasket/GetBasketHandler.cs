@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 using MS.Basket.Api.Const;
 using MS.Basket.Api.Dtos;
@@ -8,7 +9,7 @@ using System.Text.Json;
 
 namespace MS.Basket.Api.Features.Baskets.GetBasket
 {
-    public class GetBasketHandler(IDistributedCache cache, IIdentityService identityService)
+    public class GetBasketHandler(IMapper mapper, IDistributedCache cache, IIdentityService identityService)
         : IRequestHandler<GetBasketQuery, ServiceResult<BasketDto>>
     {
         public async Task<ServiceResult<BasketDto>> Handle(GetBasketQuery request, CancellationToken cancellationToken)
@@ -22,7 +23,9 @@ namespace MS.Basket.Api.Features.Baskets.GetBasket
                 return ServiceResult<BasketDto>.Error("Basket is empty!", System.Net.HttpStatusCode.NotFound);
             }
 
-            var basketDto = JsonSerializer.Deserialize<BasketDto>(basketAsString);
+            var basket = JsonSerializer.Deserialize<Data.Basket>(basketAsString);
+
+            var basketDto = mapper.Map<BasketDto>(basket);
 
             return ServiceResult<BasketDto>.SuccessAsOk(basketDto);
 

@@ -5,6 +5,7 @@ using MS.Basket.Api.Dtos;
 using MS.Shared;
 using MS.Shared.Services;
 using System.Text.Json;
+using MS.Basket.Api.Data;
 
 namespace MS.Basket.Api.Features.Baskets.AddBasketItem
 {
@@ -18,29 +19,29 @@ namespace MS.Basket.Api.Features.Baskets.AddBasketItem
 
             var basketAsString = await cache.GetStringAsync(cacheKey);
 
-            BasketDto? basketDto;
+            Data.Basket? basketDto;
 
-            var basketItemDto = new BasketItemDto(request.CourseId, request.CourseName, request.ImageUrl, request.CoursePrice,null);
+            var basketItemDto = new BasketItem(request.CourseId, request.CourseName, request.ImageUrl, request.CoursePrice,null);
 
             if (string.IsNullOrEmpty(basketAsString))
             {
-                basketDto = new BasketDto(userId, [basketItemDto]);
+                basketDto = new Data.Basket(userId, [basketItemDto]);
 
             }
             else
             {
-                basketDto = JsonSerializer.Deserialize<BasketDto>(basketAsString);
+                basketDto = JsonSerializer.Deserialize<Data.Basket>(basketAsString);
 
-                var exists = basketDto.BasketItems.FirstOrDefault(x => x.Id == request.CourseId);
+                var exists = basketDto.Items.FirstOrDefault(x => x.Id == request.CourseId);
 
                 if (exists is not null)
                 {
-                    basketDto.BasketItems.Remove(exists);
-                    basketDto.BasketItems.Add(basketItemDto);
+                    basketDto.Items.Remove(exists);
+                    basketDto.Items.Add(basketItemDto);
                 }
                 else
                 {
-                    basketDto.BasketItems.Add(basketItemDto);
+                    basketDto.Items.Add(basketItemDto);
                 }
 
             }
