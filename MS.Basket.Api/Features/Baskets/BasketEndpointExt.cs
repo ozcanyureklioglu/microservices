@@ -1,7 +1,9 @@
 ﻿using Asp.Versioning.Builder;
 using MS.Basket.Api.Features.Baskets.AddBasketItem;
+using MS.Basket.Api.Features.Baskets.ApplyDiscountCoupon;
 using MS.Basket.Api.Features.Baskets.DeleteBasket;
 using MS.Basket.Api.Features.Baskets.GetBasket;
+using MS.Basket.Api.Features.Baskets.RemoveDiscountCoupon;
 
 namespace MS.Basket.Api.Features.Baskets
 {
@@ -13,7 +15,9 @@ namespace MS.Basket.Api.Features.Baskets
                 .WithApiVersionSet(apiVersionSet)
                 .AddBasketItemGroupItemEndpoint()
                 .DeleteBasketItemGroupItemEndpoint()
-                .GetBasketItemGroupItemEndpoint();
+                .GetBasketItemGroupItemEndpoint()
+                .RemoveDiscountCouponGroupItemEndpoint()
+                .ApplyDiscountCouponGroupItemEndpoint();
         }
     }
 }

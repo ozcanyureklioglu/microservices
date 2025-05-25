@@ -46,6 +46,8 @@ namespace MS.Basket.Api.Features.Baskets.AddBasketItem
 
             }
 
+            basketDto.ApplyAvailableDiscount();
+
             basketAsString = JsonSerializer.Serialize(basketDto);
 
             await cache.SetStringAsync(cacheKey, basketAsString, token: cancellationToken);
