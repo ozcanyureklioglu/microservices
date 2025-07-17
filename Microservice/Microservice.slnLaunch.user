@@ -1,0 +1,19 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "MS.Catalog.Api\\MS.Catalog.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "..\\MS.Basket.Api\\MS.Basket.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "..\\ms.Gateway\\ms.Gateway.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
